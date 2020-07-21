@@ -48,9 +48,9 @@ const insertAResult = (selectedElement ,result) => {
 const teddies = getTeddies()
 console.log(teddies)
 
-const SearchResultsElement = document.getElementById('searchResults')
-console.log(SearchResultsElement)
+const searchResultsElement = document.getElementById('searchResults')
+console.log(searchResultsElement)
 
 
-insertAResult(SearchResultsElement)
+insertAResult(searchResultsElement)
 //teddies.map
