@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "sass": "sass --watch ./public/sass/main.scss:./public/css/style.css"
   },
   "author": "",
   "license": "ISC",
