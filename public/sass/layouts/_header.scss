@@ -4,18 +4,36 @@
     align-items: center;
     justify-content: space-between;
     background-color: $main-color;
-    width: 10%;
+    width: $header-width;
     height:100%;
+    box-shadow: 8px 0px 4px rgba(100,100,100,0.5);
 
     position: fixed;
     left:0;
-    z-index:1;
+    z-index:2;
+
+    &__nav{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        width: 54px;
+        height: 260px;
+        margin-top: 25px;
+
+        &__icone{
+            color: $icon-color;
+        }
+    }
 
     &__title{
+        font-family:'Belligerent', Arial, sans-serif;
         writing-mode: vertical-rl;
         text-orientation: upright;
-        font-size: 3.25rem;
-        font-weight: bold; 
-        color: $secondary-color;
+        font-size: 48px;
+        font-weight: bold;
+        color: $font-color;
+        letter-spacing:-10px;
+        margin-bottom: 35px;
     }
 }

@@ -1,26 +1,135 @@
 * {
+  font-family: "Roboto", sans-serif;
   margin: 0px;
   padding: 0px;
 }
 
+li {
+  list-style-type: none;
+}
+
+@font-face {
+  font-family: "Belligerent";
+  src: url("../../font/belligerent.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
 .header {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  background-color: pink;
-  width: 10%;
+  background-color: #cd86c5;
+  width: 100px;
   height: 100%;
+  box-shadow: 8px 0px 4px rgba(100, 100, 100, 0.5);
+  position: fixed;
+  left: 0;
+  z-index: 2;
+}
+.header__nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 54px;
+  height: 260px;
+  margin-top: 25px;
+}
+.header__nav__icone {
+  color: #5b5b5b;
+}
+.header__title {
+  font-family: "Belligerent", Arial, sans-serif;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  font-size: 48px;
+  font-weight: bold;
+  color: #333333;
+  letter-spacing: -10px;
+  margin-bottom: 35px;
+}
+
+.mainSide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+  height: 100%;
+  margin-left: 550px;
+}
+.mainSide__searchResults__li__result__photo {
+  width: 192px;
+  height: 160px;
+  border-radius: 7px;
+}
+
+.greySide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #d3d3d3;
+  width: 450px;
+  height: 100%;
+  box-shadow: 8px 0px 4px rgba(100, 100, 100, 0.5);
   position: fixed;
   left: 0;
   z-index: 1;
+  margin-left: 100px;
 }
-.header__title {
-  writing-mode: vertical-rl;
-  text-orientation: upright;
-  font-size: 3.25rem;
-  font-weight: bold;
-  color: black;
+.greySide__search {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 250px;
+  width: 390px;
+}
+.greySide__search__byName {
+  width: 100%;
+}
+.greySide__search__byName__label {
+  text-transform: uppercase;
+  font-size: 22px;
+}
+.greySide__search__byPrice {
+  width: 100%;
+}
+.greySide__search__byPrice__title {
+  text-transform: uppercase;
+  font-size: 22px;
+}
+.greySide__search__byPrice__input {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.greySide__search__byPrice__input__minChamp {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.greySide__search__byPrice__input__maxChamp {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.greySide__p {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 390px;
+  height: 360px;
+  color: #333333;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+  letter-spacing: 1px;
 }
 
 /*# sourceMappingURL=style.css.map */

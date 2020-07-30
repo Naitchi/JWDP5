@@ -1,5 +1,17 @@
 //mettre les font j'pense
 *{
+    font-family: 'Roboto', sans-serif;
     margin:0px;
     padding:0px;
+}
+
+li{
+    list-style-type: none;
+}
+
+@font-face {
+    font-family:'Belligerent';
+    src:url('../../font/belligerent.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
