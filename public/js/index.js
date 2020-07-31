@@ -27,83 +27,77 @@ const buildALi = (index) =>{
   return newElement;
 }
 
+const buildADiv = (classe) =>{
+  const newElement = document.createElement("div");
+  newElement.classList.add(classe);    
+  return newElement;         
+}
+
+const buildAImg = (classe, source) =>{
+  const newElement = document.createElement("img");
+  newElement.classList.add(classe);
+  newElement.src = source;
+  return newElement;        
+}
+
+const buildAH2 = (classe, content) =>{
+  const newElement = document.createElement("h2");
+  newElement.classList.add(classe);
+  newElement.textContent = content;    
+  return newElement;         
+}
+
+const buildAH3 = (classe, content) =>{
+  const newElement = document.createElement("h3");
+  newElement.classList.add(classe);
+  newElement.textContent = content;    
+  return newElement;         
+}
+
+const buildAFontAwesomeI = (classe1, classe2) =>{
+  const newElement = document.createElement("i");
+  newElement.classList.add(classe1);
+  newElement.classList.add(classe2);
+  return newElement;         
+}
+
+const buildAP = (classe, content) =>{
+  const newElement = document.createElement("p");
+  newElement.classList.add(classe);
+  newElement.textContent = content;    
+  return newElement;         
+}
+
+//FONCTION QUI AJOUTE DU CODE HTML SELON UN RESULTAT
 const buildATeddyDiv = (teddy, startingElement, index) => {
-  //FONCTION QUI AJOUTE DU CODE HTML SELON UN RESULTAT
-  console.log("teddy => " + index);
   startingElement.appendChild(buildALi(index));
   var selectedElement = startingElement.lastChild;
-  selectedElement.appendChild(document.createElement("div"));
+  selectedElement.appendChild(buildADiv("mainSide__searchResults__li__result"));
   const resultElement = selectedElement.lastChild;
-  resultElement.classList.add("mainSide__searchResults__li__result");
-  const imageElement = document.createElement("img");
-  imageElement.src = teddy.imageUrl;
-  resultElement.appendChild(imageElement);
+  resultElement.appendChild(buildAImg("mainSide__searchResults__li__result__photo",teddy.imageUrl));
   selectedElement = resultElement.lastChild;
-  selectedElement.classList.add("mainSide__searchResults__li__result__photo");
-  resultElement.appendChild(document.createElement("div"));
+  resultElement.appendChild(buildADiv("mainSide__searchResults__li__result__text"));
   const textElement = resultElement.lastChild;
-  textElement.classList.add("mainSide__searchResults__li__result__text");
-  textElement.appendChild(document.createElement("h2"));
+  textElement.appendChild(buildAH2("mainSide__searchResults__li__result__name",teddy.name));
   selectedElement = textElement.lastChild;
-  selectedElement.classList.add("mainSide__searchResults__li__result__name");
-  selectedElement.textContent = teddy.name;
-  textElement.appendChild(document.createElement("p"));
+  textElement.appendChild(buildAP("mainSide__searchResults__li__result__description",teddy.description));
   selectedElement = textElement.lastChild;
-  selectedElement.classList.add("mainSide__searchResults__li__result__description");
-  selectedElement.textContent = teddy.description;
-  resultElement.appendChild(document.createElement("div"));
+  resultElement.appendChild(buildADiv("mainSide__searchResults__li__result__D&P"));
   const dandpElement = resultElement.lastChild;
-  dandpElement.classList.add("mainSide__searchResults__li__result__D&P");
-  dandpElement.appendChild(document.createElement("div"));
+  dandpElement.appendChild(buildADiv("mainSide__searchResults__li__result__D&P__Dispo"));
   const dispoElement = dandpElement.lastChild;
-  dispoElement.classList.add("mainSide__searchResults__li__result__D&P__Dispo");
-  dispoElement.appendChild(document.createElement("h3"));
+  dispoElement.appendChild(buildAH3("mainSide__searchResults__li__result__D&P__Dispo__title","Dispo :"));
   selectedElement = dispoElement.lastChild;
-  selectedElement.classList.add(
-    "mainSide__searchResults__li__result__D&P__Dispo__title"
-  );
-  selectedElement.textContent = "Dispo :";
-  dispoElement.appendChild(document.createElement("i"));
+  dispoElement.appendChild(buildAFontAwesomeI("fas", "fa-check"));
   selectedElement = dispoElement.lastChild;
-  selectedElement.classList.add("fas");
-  selectedElement.classList.add("fa-check");
-  dandpElement.appendChild(document.createElement("div"));
+  dandpElement.appendChild(buildADiv("mainSide__searchResults__li__result__D&P__Price"));
   const priceElement = dandpElement.lastChild;
-  priceElement.classList.add("mainSide__searchResults__li__result__D&P__Price");
-  priceElement.appendChild(document.createElement("h3"));
+  priceElement.appendChild(buildAH3("mainSide__searchResults__li__result__D&P__Price__title","Prix :"));
   selectedElement = priceElement.lastChild;
-  selectedElement.classList.add(
-    "mainSide__searchResults__li__result__D&P__Price__title"
-  );
-  selectedElement.textContent = "Prix :";
-  priceElement.appendChild(document.createElement("p"));
+  priceElement.appendChild(buildAP("mainSide__searchResults__li__result__D&P__Price__value",teddy.price + " €"));
   selectedElement = priceElement.lastChild;
-  selectedElement.classList.add(
-    "mainSide__searchResults__li__result__D&P__Price__value"
-  );
-  selectedElement.textContent = teddy.price + " €";
 };
-/*
-    <li class='mainSide__searchResults__li'> (done)
-        <div class="mainSide__searchResults__li__result"> (done)                        !!!RESULTELEMENT!!!
-            <img class="mainSide__searchResults__li__result__photo"/> (done)
-            <div class="mainSide__searchResults__li__result__text">(done)
-                <h2 class="mainSide__searchResults__li__result__text__name">Lorem ipsum dolor sit</h2>(done)
-                <p class="mainSide__searchResults__li__result__text_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae   velit sed nisi commodo pulvinar vitae vel nulla. Morbi ac suscipit diam.</p>
-            </div>(done)
-            <div class="mainSide__searchResults__li__result__D&P">(done)
-                <div class="mainSide__searchResults__li__result__D&P__Dispo">(done)
-                    <h3 class="mainSide__searchResults__li__result__D&P__Dispo__title">Dispo: </h3>(done)
-                    <img class="mainSide__searchResults__li__result__D&P__Dispo__status"/>(done)
-                </div>
-                <div class="mainSide__searchResults__li__result__D&P__Price">(done)
-                    <h4 class="mainSide__searchResults__li__result__D&P__Price__title ">Prix: </h4>(done)
-                    <p class="mainSide__searchResults__li__result__D&P__Price__value">30€</p>(done)
-                </div>
-            </div>
-        </div>
-    </li>
-*/
+
 const insertAllTeddies = (elementSearchResult, teddies) => {
   //FONCTION INSERTION DE TOUT LES RESULTAT GRACE A LA FONCTION BUILDATEDDY
   console.log(elementSearchResult);

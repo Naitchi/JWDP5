@@ -1,4 +1,13 @@
 //mettre tout ce qui est question de style de l'index
+
+.--colorBg{
+    background-color: red;
+}
+
+.--darkerColorBg{
+    background-color: blue;
+}
+
 .mainSide{
     display: flex;
     flex-direction: column;
@@ -15,14 +24,6 @@
             flex-direction: row;
             align-items: center;
             justify-content: space-between;
-
-            + .--colorBg{
-                background-color: red;
-            }
-
-            + .--darkerColorBg{
-                background-color: blue;
-            }
 
             &__result{    
                 

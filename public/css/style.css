@@ -50,6 +50,14 @@ li {
   margin-bottom: 35px;
 }
 
+.--colorBg {
+  background-color: red;
+}
+
+.--darkerColorBg {
+  background-color: blue;
+}
+
 .mainSide {
   display: flex;
   flex-direction: column;
@@ -64,12 +72,6 @@ li {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-}
-.mainSide__searchResults__li + .--colorBg {
-  background-color: red;
-}
-.mainSide__searchResults__li + .--darkerColorBg {
-  background-color: blue;
 }
 .mainSide__searchResults__li__result__photo {
   width: 192px;
