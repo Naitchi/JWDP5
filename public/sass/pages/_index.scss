@@ -11,7 +11,19 @@
     &__searchResults{
 
         &__li{
-            
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+
+            + .--colorBg{
+                background-color: red;
+            }
+
+            + .--darkerColorBg{
+                background-color: blue;
+            }
+
             &__result{    
                 
                 &__photo{

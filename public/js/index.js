@@ -15,15 +15,22 @@ const getTeddies = async () => {
 };
 
 //faire une fontion 
-const buildALi = (teddy) =>{
-  document.createElement("li");
-  //ajouter la classe en fonction de 
+const buildALi = (index) =>{
+  const newElement = document.createElement("li");
+  newElement.classList.add("mainSide__searchResults__li");
+  if(index%2 == 0){
+        newElement.classList.add("--colorBg");
+  }
+  else{
+        newElement.classList.add("--darkerColorBg");
+  }
+  return newElement;
 }
 
-const buildATeddyDiv = (teddy, startingElement) => {
+const buildATeddyDiv = (teddy, startingElement, index) => {
   //FONCTION QUI AJOUTE DU CODE HTML SELON UN RESULTAT
-  console.log("teddy => " + teddy);
-  startingElement.appendChild(document.createElement("li"));
+  console.log("teddy => " + index);
+  startingElement.appendChild(buildALi(index));
   var selectedElement = startingElement.lastChild;
   selectedElement.appendChild(document.createElement("div"));
   const resultElement = selectedElement.lastChild;
@@ -100,7 +107,7 @@ const buildATeddyDiv = (teddy, startingElement) => {
 const insertAllTeddies = (elementSearchResult, teddies) => {
   //FONCTION INSERTION DE TOUT LES RESULTAT GRACE A LA FONCTION BUILDATEDDY
   console.log(elementSearchResult);
-  teddies.map((teddy) => buildATeddyDiv(teddy, elementSearchResult));
+  teddies.map((teddy, index) => buildATeddyDiv(teddy, elementSearchResult,index));
 };
 
 getTeddies().then((teddies) => {
