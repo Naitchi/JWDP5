@@ -40,10 +40,10 @@ const buildAImg = (classe, source) =>{
   return newElement;        
 }
 
-const buildAFontAwesomeI = (classe1, classe2) =>{
+const buildAFontAwesomeI = (classes,color) =>{
   const newElement = document.createElement("i");
-  newElement.classList.add(classe1);
-  newElement.classList.add(classe2);
+  newElement.classList.add(...classes);
+  newElement.style.color = color;
   return newElement;         
 }
 
@@ -52,6 +52,14 @@ const buildATextContent = (element,classe, content) =>{
   newElement.classList.add(classe);
   newElement.textContent = content;    
   return newElement;         
+}
+
+const buildAA = (classe,content,href) =>{
+  const newElement = document.createElement("a");
+  newElement.classList.add(classe);
+  newElement.textContent = content;
+  newElement.href = href;
+  return newElement;
 }
 
 //fonction pour les div parents 
@@ -72,25 +80,33 @@ const buildATextDiv = (teddy) =>{
 }
 
 const buildAPAndDDiv = (teddy) =>{
-  const actualElement = buildADiv("mainSide__searchResults__result__D&P");
+  const actualElement = buildADiv("mainSide__searchResults__result__DandP");
   actualElement.appendChild(buildADispoDiv());
   actualElement.appendChild(buildAPriceDiv(teddy));
   return actualElement;
 }
 
 const buildADispoDiv = () =>{
-  const actualElement = buildADiv("mainSide__searchResults__result__D&P__Dispo");
-  actualElement.appendChild(buildATextContent("h3","mainSide__searchResults__result__D&P__Dispo__title","Dispo :"));
-  actualElement.appendChild(buildAFontAwesomeI("fas", "fa-check"));
+  const actualElement = buildADiv("mainSide__searchResults__result__DandP__dispo");
+  actualElement.appendChild(buildATextContent("h3","mainSide__searchResults__result__DandP__dispo__title","Dispo :"));
+  actualElement.appendChild(buildAFontAwesomeI(["fas", "fa-check","fa-2x"],'#008000'));
   return actualElement;
 }
 
 const buildAPriceDiv = (teddy) =>{
-  const actualElement = buildADiv("mainSide__searchResults__result__D&P__Price");
-  actualElement.appendChild(buildATextContent("h3","mainSide__searchResults__result__D&P__Price__title","Prix :"));
-  actualElement.appendChild(buildATextContent("p","mainSide__searchResults__result__D&P__Price__value",teddy.price + " €"));
+  const actualElement = buildADiv("mainSide__searchResults__result__DandP__price");
+  actualElement.appendChild(buildATeddyPrice(teddy));
+  actualElement.appendChild(buildAA("mainSide__searchResults__result__DandP__price__moreDetails","Plus de détails →","./index.html"));
   return actualElement;
 }
+
+const buildATeddyPrice = (teddy) =>{
+  const actualElement = buildADiv("mainSide__searchResults__result__DandP__price__teddyPrice")
+  actualElement.appendChild(buildATextContent("h3","mainSide__searchResults__result__DandP__price__teddyPrice__title","Prix :"));
+  actualElement.appendChild(buildATextContent("p","mainSide__searchResults__result__DandP__price__teddyPrice__value",teddy.price + " €"));
+  return actualElement;
+}
+
 
 //FONCTION QUI AJOUTE DU CODE HTML SELON UN RESULTAT
 const buildATeddyDiv = (teddy, startingElement, index) => {

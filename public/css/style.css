@@ -96,6 +96,46 @@ li {
   font-size: 22px;
   line-height: 26px;
 }
+.mainSide__searchResults__result__DandP {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  width: 300px;
+}
+.mainSide__searchResults__result__DandP__dispo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100px;
+}
+.mainSide__searchResults__result__DandP__dispo__title {
+  font-size: 28px;
+  color: #333333;
+}
+.mainSide__searchResults__result__DandP__price {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 160px;
+  height: 100px;
+}
+.mainSide__searchResults__result__DandP__price__teddyPrice {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+.mainSide__searchResults__result__DandP__price__teddyPrice__title {
+  font-size: 29px;
+  color: #333333;
+}
+.mainSide__searchResults__result__DandP__price__teddyPrice__value {
+  font-size: 28px;
+  color: #333333;
+}
 
 .greySide {
   display: flex;
