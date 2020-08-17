@@ -42,7 +42,7 @@ const buildAImg = (classe, source) =>{
 
 const buildAFontAwesomeI = (classes,color) =>{
   const newElement = document.createElement("i");
-  newElement.classList.add(...classes);
+  newElement.classList.add(...classes);           //ici
   newElement.style.color = color;
   return newElement;         
 }
@@ -96,7 +96,7 @@ const buildADispoDiv = () =>{
 const buildAPriceDiv = (teddy) =>{
   const actualElement = buildADiv("mainSide__searchResults__result__DandP__price");
   actualElement.appendChild(buildATeddyPrice(teddy));
-  actualElement.appendChild(buildAA("mainSide__searchResults__result__DandP__price__moreDetails","Plus de détails →","./index.html"));
+  actualElement.appendChild(buildAA("mainSide__searchResults__result__DandP__price__moreDetails","Plus de détails →","html/details.html?_id=" + teddy._id));
   return actualElement;
 }
 
