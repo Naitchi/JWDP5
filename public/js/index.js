@@ -3,7 +3,7 @@ const getTeddies = async () => {
   try {
     const response = await fetch("/api/teddies");
     if (response.ok) {
-      const data = await response.json();
+      const data = response.json();
       console.log(data);
       return data;
     } else {
@@ -27,46 +27,11 @@ const buildALi = (index,classe) =>{
   return newElement;
 }
 
-const buildADiv = (classe) =>{
-  const newElement = document.createElement("div");
-  newElement.classList.add(classe);
-  return newElement;         
-}
-
-const buildAImg = (classe, source) =>{
-  const newElement = document.createElement("img");
-  newElement.classList.add(classe);
-  newElement.src = source;
-  return newElement;        
-}
-
-const buildAFontAwesomeI = (classes,color) =>{
-  const newElement = document.createElement("i");
-  newElement.classList.add(...classes);           //ici
-  newElement.style.color = color;
-  return newElement;         
-}
-
-const buildATextContent = (element,classe, content) =>{
-  const newElement = document.createElement(element);
-  newElement.classList.add(classe);
-  newElement.textContent = content;    
-  return newElement;         
-}
-
-const buildAA = (classe,content,href) =>{
-  const newElement = document.createElement("a");
-  newElement.classList.add(classe);
-  newElement.textContent = content;
-  newElement.href = href;
-  return newElement;
-}
-
 //fonction pour les div parents 
 
 const buildAResultDiv = (index, teddy) =>{
   const actualElement = buildALi(index,"mainSide__searchResults__result");
-  actualElement.appendChild(buildAImg("mainSide__searchResults__result__photo",teddy.imageUrl))
+  actualElement.appendChild(buildAImg("mainSide__searchResults__result__photo",teddy.imageUrl));
   actualElement.appendChild(buildATextDiv(teddy));
   actualElement.appendChild(buildAPAndDDiv(teddy));
   return actualElement;
@@ -101,7 +66,7 @@ const buildAPriceDiv = (teddy) =>{
 }
 
 const buildATeddyPrice = (teddy) =>{
-  const actualElement = buildADiv("mainSide__searchResults__result__DandP__price__teddyPrice")
+  const actualElement = buildADiv("mainSide__searchResults__result__DandP__price__teddyPrice");
   actualElement.appendChild(buildATextContent("h3","mainSide__searchResults__result__DandP__price__teddyPrice__title","Prix :"));
   actualElement.appendChild(buildATextContent("p","mainSide__searchResults__result__DandP__price__teddyPrice__value",teddy.price + " €"));
   return actualElement;
