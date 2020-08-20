@@ -17,8 +17,8 @@ const addAInput = (nodeElement, name, value)=>{
   input.type = "radio";
   input.name = name;
   input.value = value;
-  input.text = value;
   nodeElement.appendChild(input);
+  nodeElement.appendChild(buildATextContent("p","element__buySect__color_p",value));
 }
 
 const buildPresentationText = (item) =>{
@@ -60,23 +60,10 @@ const addAListOfUniqueChoices = (nodeElement, name, choices) => choices.map(choi
 const buildAItemPage = (parentElement, item) =>{
   parentElement.appendChild(buildAElementPresentation(item));
   parentElement.appendChild(buildAbuySect(item));
-
-  /*<div class="element__presentation">
-        <img class="element__presentation__img">
-        <div class="element__presentation__text">
-            <h1 class="element__presentation__text__tilte"></h1> 
-            <h2 class="element__presentation__text__description"></h2>
-            <h3 class="element__presentation__text__price"></h3>
-        </div>
-    </div>
-    <div class="element__buySect">
-        <div class="element__buySect__color"></div>
-        <div class="element__buySect__addToCart"><i class="fas fa-cart-arrow-down fa-3x"></i></div>
-    </div>*/
 }
 
 getTeddy().then((teddy) => {
-  const parentElement = document.getElementsByClassName("element");
+  const parentElement = document.getElementById("element");
   console.log(parentElement);
   buildAItemPage(parentElement,teddy);
 });
