@@ -1,0 +1,48 @@
+.element{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 1370px;
+    height:100%;
+    margin-left: $header-width;
+    margin-top: 50px;
+
+    &__presentation{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;    
+        background-color: $main_color;
+        height:400px;
+
+        &__img{
+            width: 310px;
+            height: 310px;
+            border-radius: 50%;
+        }
+
+        &__text{
+            width: 70%;
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            justify-content: space-around; 
+        }
+    }
+
+    &__buySect{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        height: 250px;
+
+        &__color{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+}

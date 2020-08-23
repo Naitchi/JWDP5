@@ -12,7 +12,7 @@ const getTeddy = async () => {
       }
   };
 
-const addAInput = (nodeElement, name, value)=>{
+const addAInputRadio = (nodeElement, name, value)=>{
   const input = document.createElement("input");
   input.type = "radio";
   input.name = name;
@@ -30,7 +30,7 @@ const buildPresentationText = (item) =>{
 }
 
 const buildAElementPresentation = (item) =>{
-  const actualElement = buildADiv("element_presentation");
+  const actualElement = buildADiv("element__presentation");
   actualElement.appendChild(buildAImg("element__presentation__img",item.imageUrl));
   actualElement.appendChild(buildPresentationText(item));
   return actualElement;
@@ -50,12 +50,13 @@ const buildAAddToCart = () =>{
 
 const buildAbuySect = (item) =>{
   const actualElement = buildADiv("element__buySect");
+  actualElement.appendChild(addAInput("number","number","1"))
   actualElement.appendChild(buildAColorChoice(item));
   actualElement.appendChild(buildAAddToCart());
   return actualElement;
 }
 
-const addAListOfUniqueChoices = (nodeElement, name, choices) => choices.map(choice => addAInput(nodeElement, name, choice));
+const addAListOfUniqueChoices = (nodeElement, name, choices) => choices.map(choice => addAInputRadio(nodeElement, name, choice));
 
 const buildAItemPage = (parentElement, item) =>{
   parentElement.appendChild(buildAElementPresentation(item));

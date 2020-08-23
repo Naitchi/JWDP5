@@ -13,7 +13,7 @@ const buildADiv = (classe) =>{
   
   const buildAFontAwesomeI = (classes,color) =>{
     const newElement = document.createElement("i");
-    newElement.classList.add(...classes);           //ici
+    newElement.classList.add(...classes);           
     newElement.style.color = color;
     return newElement;         
   }
@@ -31,4 +31,12 @@ const buildADiv = (classe) =>{
     newElement.textContent = content;
     newElement.href = href;
     return newElement;
+  }
+
+  const addAInput = (type, name, value)=>{
+    const input = document.createElement("input");
+    input.type = type;
+    input.name = name;
+    input.value = value;
+    return input
   }
