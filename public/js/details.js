@@ -17,8 +17,9 @@ const addAInputRadio = (nodeElement, name, value)=>{
   input.type = "radio";
   input.name = name;
   input.value = value;
+  input.id = value;
   nodeElement.appendChild(input);
-  nodeElement.appendChild(buildATextContent("p","element__buySect__color_p",value));
+  nodeElement.appendChild(addALabel("element__buySect__colorSect__color__label",value,value));
 }
 
 const buildPresentationText = (item) =>{
@@ -31,13 +32,13 @@ const buildPresentationText = (item) =>{
 
 const buildAElementPresentation = (item) =>{
   const actualElement = buildADiv("element__presentation");
-  actualElement.appendChild(buildAImg("element__presentation__img",item.imageUrl));
+  actualElement.appendChild(buildAImg("element__presentation__img",item.imageUrl,"Photo de l'ourson"));
   actualElement.appendChild(buildPresentationText(item));
   return actualElement;
 }
 
 const buildAColorChoice = (teddy) =>{
-  const actualElement = buildADiv("element__buySect__color");
+  const actualElement = buildADiv("element__buySect__colorSect__color");
   addAListOfUniqueChoices(actualElement,"color",teddy.colors);
   return actualElement;
 }
@@ -48,10 +49,18 @@ const buildAAddToCart = () =>{
   return actualElement;
 }
 
-const buildAbuySect = (item) =>{
-  const actualElement = buildADiv("element__buySect");
-  actualElement.appendChild(addAInput("number","number","1"))
+const buildAColorDiv = (item) =>{
+  const actualElement = buildADiv("element__buySect__colorSect");
+  actualElement.appendChild(buildATextContent("h3","element__buySect__colorSect__title","Choissisez la couleur de votre ourson !"));
   actualElement.appendChild(buildAColorChoice(item));
+  return actualElement;
+}
+
+const buildABuySect = (item) =>{
+  const actualElement = buildADiv("element__buySect");
+  actualElement.appendChild(addALabel("element__buySect__labelNumber","Nombre de nounours : ", "1"));
+  actualElement.appendChild(addAInput("number","number","1"));
+  actualElement.appendChild(buildAColorDiv(item));
   actualElement.appendChild(buildAAddToCart());
   return actualElement;
 }
@@ -60,7 +69,7 @@ const addAListOfUniqueChoices = (nodeElement, name, choices) => choices.map(choi
 
 const buildAItemPage = (parentElement, item) =>{
   parentElement.appendChild(buildAElementPresentation(item));
-  parentElement.appendChild(buildAbuySect(item));
+  parentElement.appendChild(buildABuySect(item));
 }
 
 getTeddy().then((teddy) => {

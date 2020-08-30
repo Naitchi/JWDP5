@@ -31,7 +31,7 @@ const buildALi = (index,classe) =>{
 
 const buildAResultDiv = (index, teddy) =>{
   const actualElement = buildALi(index,"mainSide__searchResults__result");
-  actualElement.appendChild(buildAImg("mainSide__searchResults__result__photo",teddy.imageUrl));
+  actualElement.appendChild(buildAImg("mainSide__searchResults__result__photo",teddy.imageUrl,"Photo de l'ourson"));
   actualElement.appendChild(buildATextDiv(teddy));
   actualElement.appendChild(buildAPAndDDiv(teddy));
   return actualElement;
