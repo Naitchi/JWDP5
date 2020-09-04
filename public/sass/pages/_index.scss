@@ -13,7 +13,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    width: 1370px;
+    width: 60%;
     height:100%;
     margin-left: $header-width + $search-width;
     
@@ -25,7 +25,7 @@
             flex-direction: row;
             align-items: center;
             justify-content: space-around;
-            width: 1250px;
+            width: 100%;
             height: 230px;
             
             &__photo{
@@ -35,19 +35,21 @@
             }
 
             &__text{
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: space-around;
+                min-height: 150px;
+                width: 40%;
 
                 &__name{
-                    width: 345px;
-                    height: 50px;
                     color: $font-color;
-                    font-size: 27px;
+                    font-size: 1.5rem;
                 }
 
                 &__description{
-                    width: 582px;
-                    height: 95px;
                     color: $font-color;
-                    font-size: 22px;
+                    font-size: 1.5rem;
                     line-height: 26px;
                 }
             }
@@ -67,7 +69,7 @@
                     height: 100px;
 
                     &__title{
-                        font-size:28px;
+                        font-size:1.5rem;
                         color: $font-color;
                     }
                 }
@@ -87,12 +89,12 @@
                         justify-content: space-around;
 
                         &__title{
-                            font-size:29px;
+                            font-size:1.5rem;
                             color: $font-color;
                         }
 
                         &__value{
-                            font-size:28px;
+                            font-size:1.5rem;
                             color: $font-color;
                         }
                     }
@@ -124,12 +126,13 @@
         justify-content: space-between;
         height: 250px;
         width: 390px;
+        margin-top: 50px;
         &__byName{
             width: 100%;
 
             &__label{
                 text-transform: uppercase;
-                font-size: 22px;
+                font-size: 1.5rem;
             }
         }
 
@@ -138,7 +141,7 @@
 
             &__title{
                 text-transform: uppercase;
-                font-size: 22px;
+                font-size: 1.5rem;
             }
 
             &__input{
@@ -169,12 +172,216 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 390px;
-    height: 360px;
+    width: 80%;
+    height: 40%;
     color: $font-color;
-    font-size: 24px;
+    font-size: 1.5rem;
     line-height: 29px;
     text-align: center;
     letter-spacing: 1px;
+    }
+}
+
+@include screen-xxl{
+    .mainSide__searchResults__result{    
+        width: 1950px;
+        height: 460px;
+        &__photo{
+            width: 384px;
+            height: 320px;
+        }
+        &__text{
+            height: 150px;
+            width: 960px;
+            &__name{
+                font-size:3rem;
+            }
+            &__description{
+                font-size: 2.5rem;
+                line-height:normal;
+            }
+        }
+        &__DandP{
+            width: 440px;
+            &__dispo{
+                &__title{
+                    font-size:2.5rem;
+                }
+            }
+            &__price{
+                width: 280px;
+                height: 100px;
+                &__teddyPrice{
+                    &__title{
+                        font-size: 2.5rem;
+                    }
+                    &__value{
+                        font-size:2.5rem;
+                    }
+                }
+                &__moreDetails{
+                    font-size: 2rem;
+                }
+            }
+        }
+    }
+    
+    .greySide{
+        &__search{
+            &__byName__label{
+                font-size: 2rem;
+            }
+            &__byPrice__title{
+                font-size: 2rem;    
+            }
+        }
+        &__p{
+            font-size: 2rem;
+        }
+    }
+    label,p{
+        font-size: 2rem;
+    }
+}
+
+@include screen-xl{
+    .mainSide{
+        flex-direction: column;
+        width: 970px;
+        margin-left: 0;
+        margin-top: 310px;
+        &__searchResults{
+            margin: 25px 0 25px 0;
+            &__result{    
+                width: 950px;
+                height: 230px;
+                &__text{
+                    width: 382px;
+                }
+            }
+        }
+    }
+    
+    .greySide{
+        width: 100%;
+        height:200px;    
+        margin-left: 0;
+        margin-top: 100px;
+        &__search{
+            flex-direction: row;
+            height: 250px;
+            width: 990px;
+            margin-top: 0;    
+        }
+    }
+}
+
+@include screen-lg{
+    .mainSide{
+        width: 750px;
+        margin-top: 260px;
+        &__searchResults{
+            margin: 50px 0 50px 0;
+            &__result{    
+                width: 100%;
+                height: 230px;
+                &__text{
+                    width: 20%;
+                    &__name{
+                        font-size: 1rem;
+                    }
+                    &__description{
+                        font-size: 1rem;
+                    }
+                }
+                &__DandP{
+                    &__dispo{
+                        height: 100px;
+                        &__title{
+                            font-size:1rem;
+                        }
+                    }
+                    &__price{
+                        &__teddyPrice{   
+                            &__title{
+                                font-size:1rem;
+                            }
+                            &__value{
+                                font-size:1rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }    
+
+    .greySide__search{
+        width: 750px;
+    }
+}
+
+@include screen-md{
+    .mainSide{
+        flex-direction: column;
+        width: 100%;
+        margin-left: 0;
+        margin-top: 300px;
+        &__searchResults{
+            margin: 25px 10px 25px 10px;
+            &__result{    
+                flex-direction: column;
+                width: 100%;
+                height: auto;
+                &__photo{
+                    margin-top: 10px;
+                }
+                &__text{
+                    width: 60%;
+                    align-items: center;
+                    &__description{
+                        text-align: center;
+                    }
+                }
+                &__DandP{
+                    flex-direction: column;
+                    &__dispo{
+                        height: 60px;
+                    }
+                }
+            }
+        }
+    }
+    .greySide{
+        width: 100%;
+        height:210px;    
+        margin-left: 0;
+        margin-top: 100px;
+        &__search{
+            flex-direction: column;
+            height: 130px;
+            width: 90%;
+            margin-top: 20px;    
+            &__byName{   
+                &__label{
+                    font-size: 1rem;
+                }
+            }
+            &__byPrice{
+                &__title{
+                    font-size: 1rem;
+                }
+            }
+        }
+        &__p{
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+    }
+}
+
+@include screen-sm{
+    .greySide__search__byPrice__input{
+        flex-direction: column;
     }
 }

@@ -47,5 +47,124 @@
             justify-content: space-between;
             height: 50px;
         }
+        &__addToCart{
+            background-color: initial;
+            border: 0;
+        }
     }
+}
+
+@include screen-xxl{
+    .element{
+        width: 1970px;    
+        &__presentation{
+            height:600px;
+            width: 1970px;
+            &__img{
+                width: 410px;
+                height: 410px;
+            }
+            &__text{
+                width: 70%;
+                &__title{
+                    font-size: 2.5rem;
+                }
+                &__description{
+                    font-size: 2.5rem;
+                }
+                &__price{
+                    font-size: 2.5rem;
+                }
+            }
+        }
+        &__buySect{
+            height: 250px;
+            width: 1970px;
+        }
+    }
+
+    .element__buySect__addToCart>.fa-3x{
+        font-size: 6rem;
+    }
+
+    .element__buySect>input{
+        width: 300px;
+        height: 40px;
+    }
+
+    label{
+        font-size: 2rem;
+    }
+    h3{
+        font-size: 2.5rem;
+    }
+}
+
+@include screen-xl{
+    .element{ 
+        margin-top: 120px;
+        margin-left: 0;
+        width: 750px;    
+        &__presentation{
+            height:400px;
+            width: 750px;
+            &__img{
+                width: 210px;
+                height: 210px;
+            }
+            &__text{
+                width: 68%;
+                &__title{
+                    font-size: 1.3rem;
+                }
+                &__description{
+                    font-size: 1rem;
+                }
+                &__price{
+                    font-size: 1.3rem;
+                }
+            }
+        }
+        &__buySect{
+            height: 250px;
+            width: 750px;
+        }
+    }
+    label{
+        font-size: 1rem;
+    }
+    h3{
+        font-size: 1rem;
+    }
+}
+
+@include screen-lg{
+    .element{
+        width: 90%;    
+        margin-bottom: 10px;
+        &__presentation{
+            flex-direction: column;
+            height:500px;
+            width: 100%;
+            &__img{
+                width: 210px;
+                height: 210px;
+            }
+            &__text{
+                width: 70%;
+            }
+        }
+        &__buySect{
+            flex-direction: column;
+            height: 300px;
+            width: 100%;
+        }
+    }
+    .element__buySect>input{
+        width: 90%;
+    }
+    .element__buySect__addToCart>.fa-3x{
+        font-size: 3rem;
+    }
+
 }

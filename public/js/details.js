@@ -24,7 +24,7 @@ const addAInputRadio = (nodeElement, name, value)=>{
 
 const buildPresentationText = (item) =>{
   const actualElement = buildADiv("element__presentation__text");
-  actualElement.appendChild(buildATextContent("h1","element__presentation__text__tilte",item.name));
+  actualElement.appendChild(buildATextContent("h1","element__presentation__text__title",item.name));
   actualElement.appendChild(buildATextContent("h2","element__presentation__text__description",item.description));
   actualElement.appendChild(buildATextContent("h3","element__presentation__text__price","Prix :" + item.price + "€"));
   return actualElement;
@@ -44,7 +44,7 @@ const buildAColorChoice = (teddy) =>{
 }
 
 const buildAAddToCart = () =>{
-  const actualElement = buildADiv("element__buySect__addToCart");
+  const actualElement = buildATextContent("button","element__buySect__addToCart","");
   actualElement.appendChild(buildAFontAwesomeI(["fas", "fa-cart-arrow-down", "fa-3x"],"#008000"));
   return actualElement;
 }
