@@ -317,7 +317,8 @@ body {
     font-size: 2rem;
   }
 
-  label, p {
+  label,
+p {
     font-size: 2rem;
   }
 }
@@ -616,6 +617,14 @@ body {
   .element__buySect__addToCart > .fa-3x {
     font-size: 3rem;
   }
+}
+.basket {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 90%;
+  margin-left: 100px;
 }
 
 /*# sourceMappingURL=style.css.map */

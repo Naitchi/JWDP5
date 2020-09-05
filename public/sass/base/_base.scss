@@ -1,24 +1,23 @@
-
-*{
-    font-family: 'Roboto', sans-serif;
-    margin:0px;
-    padding:0px;
+* {
+  font-family: "Roboto", sans-serif;
+  margin: 0px;
+  padding: 0px;
 }
 
-li{
-    list-style-type: none;
+li {
+  list-style-type: none;
 }
 
 @font-face {
-    font-family:'Belligerent';
-    src:url('../../font/belligerent.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+  font-family: "Belligerent";
+  src: url("../../font/belligerent.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
 }
 
-body{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-content: center;
+body {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
 }

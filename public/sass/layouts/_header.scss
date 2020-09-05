@@ -1,97 +1,97 @@
-.header{
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background-color: $main-color;
+  width: $header-width;
+  height: 100%;
+  box-shadow: 8px 0px 4px rgba(100, 100, 100, 0.5);
+
+  position: fixed;
+  left: 0;
+  z-index: 2;
+
+  &__nav {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    background-color: $main-color;
-    width: $header-width;
-    height:100%;
-    box-shadow: 8px 0px 4px rgba(100,100,100,0.5);
+    width: 54px;
+    height: 260px;
+    margin-top: 25px;
 
-    position: fixed;
-    left:0;
-    z-index:2;
-
-    &__nav{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
-        width: 54px;
-        height: 260px;
-        margin-top: 25px;
-
-        &__icone{
-            color: $icon-color;
-        }
+    &__icone {
+      color: $icon-color;
     }
+  }
 
-    &__title{
-        font-family:'Belligerent', Arial, sans-serif;
-        writing-mode: vertical-rl;
-        text-orientation: upright;
-        font-size: 48px;
-        font-weight: bold;
-        color: $font-color;
-        letter-spacing:-10px;
-        margin-bottom: 35px;
-    }
+  &__title {
+    font-family: "Belligerent", Arial, sans-serif;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    font-size: 48px;
+    font-weight: bold;
+    color: $font-color;
+    letter-spacing: -10px;
+    margin-bottom: 35px;
+  }
 }
 
-@include screen-xxl{
-    .header{
-        &__nav{
-            height: 460px;
-        }
-
-        &__title{
-            font-size: 5rem;
-        }
+@include screen-xxl {
+  .header {
+    &__nav {
+      height: 460px;
     }
 
-    nav>.fa-3x{
-        font-size: 4.5rem;
+    &__title {
+      font-size: 5rem;
     }
+  }
+
+  nav > .fa-3x {
+    font-size: 4.5rem;
+  }
 }
 
-@include screen-xl{
-    .header{
-        flex-direction: row-reverse ;
-        width: 100%;
-        height:100px;
+@include screen-xl {
+  .header {
+    flex-direction: row-reverse;
+    width: 100%;
+    height: 100px;
 
-        &__nav{
-            flex-direction: row;
-            width: 260px;
-            height: 54px;
-            margin-top: 0px;
-            margin-right: 35px;
-        }
-
-        &__title{
-            writing-mode: horizontal-tb;
-            text-orientation: sideways-right;
-            letter-spacing: 10px;
-            margin-bottom: 0px;
-            margin-left: 35px;
-        }
+    &__nav {
+      flex-direction: row;
+      width: 260px;
+      height: 54px;
+      margin-top: 0px;
+      margin-right: 35px;
     }
+
+    &__title {
+      writing-mode: horizontal-tb;
+      text-orientation: sideways-right;
+      letter-spacing: 10px;
+      margin-bottom: 0px;
+      margin-left: 35px;
+    }
+  }
 }
 
-@include screen-md{
-    .header{
-        flex-direction: column-reverse;
-        justify-content: space-around;
-        height: 100px;
-        &__nav{
-            margin: 0;
-        }
-        &__title{
-            margin-left: 0;
-            font-size: 2rem;
-        }
-    }    
-    .fa-3x{
-        font-size:2rem;
+@include screen-md {
+  .header {
+    flex-direction: column-reverse;
+    justify-content: space-around;
+    height: 100px;
+    &__nav {
+      margin: 0;
     }
+    &__title {
+      margin-left: 0;
+      font-size: 2rem;
+    }
+  }
+  .fa-3x {
+    font-size: 2rem;
+  }
 }

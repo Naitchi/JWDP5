@@ -1,29 +1,29 @@
 @mixin screen-sm {
-    @media screen and (max-width: map-get($breakpoints, sm)){
-        @content;
-    }
+  @media screen and (max-width: map-get($breakpoints, sm)) {
+    @content;
+  }
 }
 
 @mixin screen-md {
-    @media screen and (max-width: map-get($breakpoints, md)){
-        @content;
-    }
+  @media screen and (max-width: map-get($breakpoints, md)) {
+    @content;
+  }
 }
 
 @mixin screen-lg {
-    @media screen and (max-width: map-get($breakpoints, lg)){
-        @content;
-    }
+  @media screen and (max-width: map-get($breakpoints, lg)) {
+    @content;
+  }
 }
 
 @mixin screen-xl {
-    @media screen and (max-width: map-get($breakpoints, xl)){
-        @content;
-    }
+  @media screen and (max-width: map-get($breakpoints, xl)) {
+    @content;
+  }
 }
 
 @mixin screen-xxl {
-    @media screen and (min-width: map-get($breakpoints, xxl)){
-        @content;
-    }
+  @media screen and (min-width: map-get($breakpoints, xxl)) {
+    @content;
+  }
 }
