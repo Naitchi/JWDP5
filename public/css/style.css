@@ -625,6 +625,7 @@ p {
   align-items: center;
   width: 90%;
   margin-left: 100px;
+  min-height: 1000px;
 }
 
 /*# sourceMappingURL=style.css.map */
