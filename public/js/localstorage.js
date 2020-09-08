@@ -17,31 +17,31 @@
 const AddToCart = () => {
   const addToCartButton = document.getElementById("addToCartButton");
   console.log(addToCartButton);
-  addToCartButton.onclick = addToLocalStorage(Items);
+  addToCartButton.onclick = addToLocalStorage(items);
 };
 
-const addToLocalStorage = (Items) => {
-  localStorage.setItem("Items", JSON.stringify(Items));
+const addToLocalStorage = (items) => {
+  localStorage.setItem("items", JSON.stringify(items));
 };
 
 const takeLocalStorageData = () => {
-  return JSON.parse(localStorage.getItem("Items"));
+  return JSON.parse(localStorage.getItem("items"));
 };
 
-const creeItem = (_id, Quantity, color) => {
-  var objet = {};
-  objet._id = _id;
-  objet.Quantity = Quantity;
-  objet.color = color;
-
+const creeItem = (_id, quantity, color) => {
+  const objet = {
+    _id,
+    quantity,
+    color
+  };
   return objet;
 };
-let item0 = creeItem("5be9c8541c9d440000665243", 2, "Noir");
-let item1 = creeItem("5beaa8bf1c9d440000a57d94", 2, "Tan");
+const item0 = creeItem("5be9c8541c9d440000665243", 2, "Noir");
+const item1 = creeItem("5beaa8bf1c9d440000a57d94", 2, "Tan");
 console.log(item1, item0);
-var Items = [item0, item1];
-console.log(Items);
-addToLocalStorage(Items);
+const items = [item0, item1];
+console.log(items);
+addToLocalStorage(items);
 //setTimeout(AddToCart, 500);
 //listenRadioInput();
 

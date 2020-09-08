@@ -11,68 +11,78 @@ const getElementType = async (_id) => {
 };
 
 const buildABasket = (basket) => {
-  basket.map((Item, index) => buildAElement(Item, index));
+  basket.map((item, index) => buildAElement(item, index));
 };
 
-const buildAElement = async (Item, index) => {
-  console.log(Item);
-  const ItemType = await getElementType(Item._id);
+const buildAElement = async (item, index) => {
+  console.log(item);
+  const itemType = await getElementType(item._id);
   const elementParent = document.getElementById("basket__content");
   const element = buildALi(index, "basket__content__element");
   elementParent.appendChild(element);
   element.appendChild(
     buildAImg(
       "basket__content__element__img",
-      ItemType.imageUrl,
+      itemType.imageUrl,
       "Photo de l'ourson"
     )
   );
-  element.appendChild(buildACharacteristics(Item, ItemType));
-  element.appendChild(buildAElementOptions(Item));
+  element.appendChild(buildACharacteristics(item, itemType));
+  element.appendChild(buildAElementOptions(item));
   return element;
 };
 
-const buildACharacteristics = (Item, ItemType) => {
+const buildACharacteristics = (item, itemType) => {
   const element = buildADiv("basket__content__element__characteristics");
   element.appendChild(
     buildATextContent(
       "h3",
       "basket__content__element__characteristics__name",
-      ItemType.name
+      itemType.name
     )
   );
   element.appendChild(
     buildATextContent(
       "p",
       "basket__content__element__characteristics__color",
-      Item.color
+      `couleur : ${item.color}`
     )
   );
   element.appendChild(
     buildATextContent(
       "p",
       "basket__content__element__characteristics__price",
-      ItemType.price + "€"
+      `${itemType.price}€`
     )
   );
   return element;
 };
 
-const buildAElementOptions = (Item) => {
+const buildAElementOptions = (item) => {
   const element = buildADiv("basket__content__element__options");
-  element.appendChild(buildANumberAdjust(Item));
+  element.appendChild(buildANumberAdjust(item));
   element.appendChild(buildADeleteButton());
   return element;
 };
 
-const buildANumberAdjust = (Item) => {
+const buildANumberAdjust = (item) => {
   const element = buildADiv("basket__content__element__options__numberAdjust");
   element.appendChild(
-    buildATextContent(
+    buildATextContentWithId(
       "p",
       "basket__content__element__options__numberAdjust__number",
-      Item.Quantity
+      "number",
+      `nombre d'articles : ${item.quantity}`
     )
+  );
+  element.appendChild(buildAButtonDiv());
+  addOneItem("number",item);
+  return element;
+};
+
+const buildAButtonDiv = () => {
+  const element = buildADiv(
+    "basket__content__element__options__numberAdjust__buttonDiv"
   );
   element.appendChild(buildAAddButton());
   element.appendChild(buildARemoveButton());
@@ -82,19 +92,19 @@ const buildANumberAdjust = (Item) => {
 const buildAAddButton = () => {
   const element = buildATextContentWithId(
     "button",
-    "basket__content__element__options__numberAdjust__number__add",
+    "basket__content__element__options__numberAdjust__buttonDiv__add",
     "addButton",
     null
   );
   element.appendChild(
     buildAFontAwesomeI(
       [
-        "basket__content__element__options__numberAdjust__number__add__icon",
+        "basket__content__element__options__numberAdjust__buttonDiv__add__icon",
         "fas",
         "fa-plus",
         "fa-3x",
       ],
-      "white"
+      "lightpink"
     )
   );
   return element;
@@ -103,19 +113,19 @@ const buildAAddButton = () => {
 const buildARemoveButton = () => {
   const element = buildATextContentWithId(
     "button",
-    "basket__content__element__options__numberAdjust__number__remove",
+    "basket__content__element__options__numberAdjust__buttonDiv__remove",
     "removeButton",
     null
   );
   element.appendChild(
     buildAFontAwesomeI(
       [
-        "basket__content__element__options__numberAdjust__number__remove__icon",
+        "basket__content__element__options__numberAdjust__buttonDiv__remove__icon",
         "fas",
         "fa-minus",
         "fa-3x",
       ],
-      "white"
+      "lightpink"
     )
   );
   return element;
@@ -124,22 +134,31 @@ const buildARemoveButton = () => {
 const buildADeleteButton = () => {
   const element = buildATextContentWithId(
     "button",
-    "basket__content__element__options__numberAdjust__number__delete",
+    "basket__content__element__options__numberAdjust__delete",
     "deleteButton",
     null
   );
   element.appendChild(
     buildAFontAwesomeI(
       [
-        "basket__content__element__options__numberAdjust__number__delete__icon",
+        "basket__content__element__options__numberAdjust__delete__icon",
         "fas",
         "fa-times",
         "fa-3x",
       ],
-      "white"
+      "lightpink"
     )
   );
   return element;
+};
+
+const addOneItem = (id,item) => {
+  const nodeElement = document.getElementById(id);
+  console.log(nodeElement);
+  const element = document.getElementById("addButton");
+  console.log(element);
+  //const newLocal = (nodeElement) => {console.log(nodeElement)/*.innerHTML = `nombre d'articles : ${item.quantity++}`*/};
+  element.addEventListener("click", (e) => console.log(e)); 
 };
 
 const basket = takeLocalStorageData();
