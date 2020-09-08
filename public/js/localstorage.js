@@ -24,8 +24,21 @@ const addToLocalStorage = (items) => {
   localStorage.setItem("items", JSON.stringify(items));
 };
 
-const takeLocalStorageData = () => {
-  return JSON.parse(localStorage.getItem("items"));
+const takeLocalStorageData = () => { 
+  try{
+    const response = localStorage.getItem("items");
+    console.log(response);
+    if(response != null){
+      const data = JSON.parse(response); 
+      console.log(data);
+      return data;
+    }else {
+      console.log("probleme d'extraction localStorage :",response.status);
+    }
+  }
+  catch (error){
+    console.log(error);
+  }
 };
 
 const creeItem = (_id, quantity, color) => {

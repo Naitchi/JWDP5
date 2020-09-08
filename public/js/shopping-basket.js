@@ -76,7 +76,7 @@ const buildANumberAdjust = (item) => {
     )
   );
   element.appendChild(buildAButtonDiv());
-  addOneItem("number",item);
+  //addOneItem("number",item);
   return element;
 };
 
@@ -152,15 +152,21 @@ const buildADeleteButton = () => {
   return element;
 };
 
-const addOneItem = (id,item) => {
+/*const addOneItem = (id,item) => {
   const nodeElement = document.getElementById(id);
   console.log(nodeElement);
   const element = document.getElementById("addButton");
   console.log(element);
-  //const newLocal = (nodeElement) => {console.log(nodeElement)/*.innerHTML = `nombre d'articles : ${item.quantity++}`*/};
+  //const newLocal = (nodeElement) => {console.log(nodeElement).innerHTML = `nombre d'articles : ${item.quantity++}`};
   element.addEventListener("click", (e) => console.log(e)); 
-};
+};*/
 
-const basket = takeLocalStorageData();
-console.log(basket);
-buildABasket(basket);
+/*const testEvent = () => {
+  const element = document.getElementById("addButton");
+  element.addEventListener("click", (e) => console.log(e)); 
+};*/
+
+takeLocalStorageData().then((basket) => {
+  buildABasket(basket);
+  console.log(basket);
+});
