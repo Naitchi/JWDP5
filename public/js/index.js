@@ -103,7 +103,7 @@ const buildATeddyPrice = (teddy) => {
     buildATextContent(
       "p",
       "mainSide__searchResults__result__DandP__price__teddyPrice__value",
-      teddy.price + " €"
+      `${(teddy.price / 100).toFixed(2)}€`
     )
   );
   return actualElement;

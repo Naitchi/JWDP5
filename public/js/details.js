@@ -14,12 +14,15 @@ const getTeddy = async () => {
   }
 };
 
-const addAInputRadio = (nodeElement, name, value) => {
+const addAInputRadio = (nodeElement, name, value, index) => {
   const input = document.createElement("input");
   input.type = "radio";
   input.name = name;
   input.value = value;
   input.id = value;
+  if (index === 0) {
+    input.required = true;
+  }
   nodeElement.appendChild(input);
   nodeElement.appendChild(
     addALabel("element__buySect__colorSect__color__label", value, value)
@@ -42,7 +45,7 @@ const buildPresentationText = (item) => {
     buildATextContent(
       "h3",
       "element__presentation__text__price",
-      "Prix :" + item.price + "€"
+      "Prix :" + (item.price / 100).toFixed(2) + "€"
     )
   );
   return actualElement;
@@ -63,7 +66,7 @@ const buildAColorChoice = (teddy) => {
   return actualElement;
 };
 
-const buildAAddToCart = () => {
+const buildAAddToCart = (teddy) => {
   const actualElement = buildATextContentWithId(
     "button",
     "element__buySect__addToCart",
@@ -73,6 +76,9 @@ const buildAAddToCart = () => {
   actualElement.appendChild(
     buildAFontAwesomeI(["fas", "fa-cart-arrow-down", "fa-3x"], "#008000")
   );
+  actualElement.addEventListener("click", () => {
+    getAnOrder(teddy);
+  });
   return actualElement;
 };
 
@@ -92,16 +98,22 @@ const buildAColorDiv = (item) => {
 const buildABuySect = (item) => {
   const actualElement = buildADiv("element__buySect");
   actualElement.appendChild(
-    addALabel("element__buySect__labelNumber", "Nombre de nounours : ", "1")
+    addALabel(
+      "element__buySect__labelNumber",
+      "Nombre de nounours : ",
+      "nombreDeNounours"
+    )
   );
-  actualElement.appendChild(addAInput("number", "number", "1"));
+  actualElement.appendChild(addAInput("number", "number", "nombreDeNounours"));
   actualElement.appendChild(buildAColorDiv(item));
-  actualElement.appendChild(buildAAddToCart());
+  actualElement.appendChild(buildAAddToCart(item));
   return actualElement;
 };
 
 const addAListOfUniqueChoices = (nodeElement, name, choices) =>
-  choices.map((choice) => addAInputRadio(nodeElement, name, choice));
+  choices.map((choice, index) =>
+    addAInputRadio(nodeElement, name, choice, index)
+  );
 
 const buildAItemPage = (parentElement, item) => {
   parentElement.appendChild(buildAElementPresentation(item));
@@ -113,3 +125,33 @@ getTeddy().then((teddy) => {
   console.log(parentElement);
   buildAItemPage(parentElement, teddy);
 });
+
+const getAnOrder = (teddy) => {
+  const quantity = +document.getElementById("nombreDeNounours").value;
+  if (quantity > 0 && quantity !== null) {
+    const color = document.querySelector('input[name="color"]:checked').value;
+    let localStorage = takeLocalStorageData();
+    console.log(typeof localStorage);
+    if (
+      localStorage.some(
+        (storage) => storage._id === teddy._id && storage.color === color
+      )
+    ) {
+      localStorage = localStorage.map((storage) => {
+        if (storage._id === teddy._id && storage.color === color) {
+          storage.quantity += quantity;
+          console.log(storage);
+        }
+        return storage;
+      });
+    } else {
+      const newItem = creeItem(teddy._id, quantity, color);
+      localStorage.push(newItem);
+    }
+    addToLocalStorage(localStorage);
+    console.log(localStorage);
+  } else {
+    alert("veuillez rentrer un nombre valide");
+  }
+  console.log(teddy.colors);
+};

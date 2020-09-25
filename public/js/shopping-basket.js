@@ -16,8 +16,8 @@ const buildABasket = (basket) => {
 
 const buildAElement = async (item, index) => {
   console.log(item);
-  const itemType = await getElementType(item._id);
   const elementParent = document.getElementById("basket__content");
+  const itemType = await getElementType(item._id);
   const element = buildALi(index, "basket__content__element");
   elementParent.appendChild(element);
   element.appendChild(
@@ -52,7 +52,7 @@ const buildACharacteristics = (item, itemType) => {
     buildATextContent(
       "p",
       "basket__content__element__characteristics__price",
-      `${itemType.price}€`
+      `${(itemType.price / 100).toFixed(2)}€`
     )
   );
   return element;
@@ -61,41 +61,61 @@ const buildACharacteristics = (item, itemType) => {
 const buildAElementOptions = (item) => {
   const element = buildADiv("basket__content__element__options");
   element.appendChild(buildANumberAdjust(item));
-  element.appendChild(buildADeleteButton());
+  element.appendChild(buildADeleteButton(item));
   return element;
 };
 
 const buildANumberAdjust = (item) => {
   const element = buildADiv("basket__content__element__options__numberAdjust");
   element.appendChild(
-    buildATextContentWithId(
+    buildATextContent(
       "p",
       "basket__content__element__options__numberAdjust__number",
-      "number",
-      `nombre d'articles : ${item.quantity}`
+      `nombre d'articles :`
     )
   );
-  element.appendChild(buildAButtonDiv());
-  //addOneItem("number",item);
+  element.appendChild(
+    buildATextContentWithId("span", 0, "qty-" + item._id, item.quantity)
+  );
+  element.appendChild(buildAButtonDiv(item));
   return element;
 };
 
-const buildAButtonDiv = () => {
+const buildAButtonDiv = (item) => {
   const element = buildADiv(
     "basket__content__element__options__numberAdjust__buttonDiv"
   );
-  element.appendChild(buildAAddButton());
-  element.appendChild(buildARemoveButton());
+  element.appendChild(buildAAddButton(item));
+  element.appendChild(buildARemoveButton(item));
   return element;
 };
 
-const buildAAddButton = () => {
+const buildAAddButton = (item) => {
   const element = buildATextContentWithId(
     "button",
     "basket__content__element__options__numberAdjust__buttonDiv__add",
     "addButton",
     null
   );
+  element.addEventListener("click", () => {
+    console.log(item);
+    const qty = document.getElementById("qty-" + item._id);
+    if (qty.innerHTML < 10) {
+      qty.innerHTML++;
+      let array = takeLocalStorageData();
+      array.map((teddy) => {
+        if (teddy._id === item._id) {
+          teddy.quantity++;
+          console.log(teddy.quantity);
+        }
+      });
+      console.log(array);
+      addToLocalStorage(array);
+    } else {
+      alert("veuillez mettre un chiffre inférieur à 10");
+    }
+    console.log(qty.innerHTML);
+  });
   element.appendChild(
     buildAFontAwesomeI(
       [
@@ -110,13 +130,31 @@ const buildAAddButton = () => {
   return element;
 };
 
-const buildARemoveButton = () => {
+const buildARemoveButton = (item) => {
   const element = buildATextContentWithId(
     "button",
     "basket__content__element__options__numberAdjust__buttonDiv__remove",
     "removeButton",
     null
   );
+  element.addEventListener("click", () => {
+    console.log(item);
+    const qty = document.getElementById("qty-" + item._id);
+    if (qty.innerHTML > 1) {
+      qty.innerHTML--;
+      let array = takeLocalStorageData();
+      array.map((teddy) => {
+        if (teddy._id === item._id) {
+          teddy.quantity--;
+          console.log(teddy.quantity);
+        }
+      });
+      addToLocalStorage(array);
+    } else {
+      alert("veuillez mettre un chiffre acceptable");
+    }
+    console.log(qty.innerHTML);
+  });
   element.appendChild(
     buildAFontAwesomeI(
       [
@@ -131,13 +169,26 @@ const buildARemoveButton = () => {
   return element;
 };
 
-const buildADeleteButton = () => {
+const buildADeleteButton = (item) => {
   const element = buildATextContentWithId(
     "button",
     "basket__content__element__options__numberAdjust__delete",
     "deleteButton",
     null
   );
+  element.addEventListener("click", () => {
+    console.log(item);
+    let array = takeLocalStorageData();
+    array.map((teddy, index) => {
+      console.log(index);
+      if (teddy._id === item._id) {
+        array.splice(index, 1);
+        console.log(array);
+        addToLocalStorage(array);
+        history.go(0);
+      }
+    });
+  });
   element.appendChild(
     buildAFontAwesomeI(
       [
@@ -152,21 +203,16 @@ const buildADeleteButton = () => {
   return element;
 };
 
-/*const addOneItem = (id,item) => {
-  const nodeElement = document.getElementById(id);
-  console.log(nodeElement);
-  const element = document.getElementById("addButton");
-  console.log(element);
-  //const newLocal = (nodeElement) => {console.log(nodeElement).innerHTML = `nombre d'articles : ${item.quantity++}`};
-  element.addEventListener("click", (e) => console.log(e)); 
-};*/
-
-/*const testEvent = () => {
-  const element = document.getElementById("addButton");
-  element.addEventListener("click", (e) => console.log(e)); 
-};*/
-
-takeLocalStorageData().then((basket) => {
-  buildABasket(basket);
-  console.log(basket);
-});
+const basket = takeLocalStorageData();
+if (basket == 0) {
+  const elementParent = document.getElementById("basket__content");
+  elementParent.appendChild(
+    buildATextContent(
+      "p",
+      "basket__content__empty",
+      "pas d'article dans le panier pour l'instant"
+    )
+  );
+}
+console.log(basket);
+buildABasket(basket);
