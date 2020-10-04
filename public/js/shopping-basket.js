@@ -10,6 +10,18 @@ const getElementType = async (_id) => {
   }
 };
 
+const creeContact = () => {
+  const contact = {
+    prenom : document.querySelector('input[name="prenom"]').value,
+    email : document.querySelector('input[name="email"]').value,
+    city : document.querySelector('input[name="city"]').value,
+    nom : document.querySelector('input[name="nom"]').value,
+    adress : document.querySelector('input[name="adress"]').value
+  };
+  return contact;
+};
+
+
 const buildABasket = (basket) => {
   basket.map((item, index) => buildAElement(item, index));
 };
@@ -216,3 +228,32 @@ if (basket == 0) {
 }
 console.log(basket);
 buildABasket(basket);
+const btnForm = document.getElementById("submit");
+btnForm.addEventListener("click",() =>{
+  const email = document.querySelector('input[name="email"]').value;
+  const regexEmailValidator = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@[a-zA-Z\-0-9]+\.+[a-zA-Z]{2,}$/;
+  if(regexEmailValidator.test(email)){
+    const url = '/api/order';
+    const contactJS = creeContact();
+    console.log(contactJS);
+    const basket = takeLocalStorageData();
+    let productsJS = [];
+    basket.map(item => productsJS.push(item._id));
+    const contact = JSON.stringify(contactJS);
+    const products = JSON.stringify(productsJS);
+    const payload = {products, contact};
+    console.log(payload);
+    const options = {
+        method: 'POST',
+        body: payload,
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+    fetch(url, options)
+        .then(res => res.json())
+        .then(res => console.log(res));
+  }else{
+    alert("veuillez rentrer une adresse mail valide");
+  }
+})
