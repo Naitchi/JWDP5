@@ -12,15 +12,14 @@ const getElementType = async (_id) => {
 
 const creeContact = () => {
   const contact = {
-    prenom : document.querySelector('input[name="prenom"]').value,
-    email : document.querySelector('input[name="email"]').value,
-    city : document.querySelector('input[name="city"]').value,
-    nom : document.querySelector('input[name="nom"]').value,
-    adress : document.querySelector('input[name="adress"]').value
+    firstName: document.querySelector('input[name="prenom"]').value,
+    email: document.querySelector('input[name="email"]').value,
+    city: document.querySelector('input[name="city"]').value,
+    lastName: document.querySelector('input[name="nom"]').value,
+    address: document.querySelector('input[name="adress"]').value,
   };
   return contact;
 };
-
 
 const buildABasket = (basket) => {
   basket.map((item, index) => buildAElement(item, index));
@@ -226,34 +225,37 @@ if (basket == 0) {
     )
   );
 }
+
+const purchase = (url, contact, products) => {
+  const data = {
+    contact,
+    products,
+  };
+  const options = {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  return fetch(url, options).then((response) => response.json());
+};
+
 console.log(basket);
 buildABasket(basket);
 const btnForm = document.getElementById("submit");
-btnForm.addEventListener("click",() =>{
+btnForm.addEventListener("click", () => {
   const email = document.querySelector('input[name="email"]').value;
   const regexEmailValidator = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@[a-zA-Z\-0-9]+\.+[a-zA-Z]{2,}$/;
-  if(regexEmailValidator.test(email)){
-    const url = '/api/order';
-    const contactJS = creeContact();
-    console.log(contactJS);
+  if (regexEmailValidator.test(email)) {
+    const url = "/api/teddies/order";
+    const contact = creeContact();
+    console.log(contact);
     const basket = takeLocalStorageData();
-    let productsJS = [];
-    basket.map(item => productsJS.push(item._id));
-    const contact = JSON.stringify(contactJS);
-    const products = JSON.stringify(productsJS);
-    const payload = {products, contact};
-    console.log(payload);
-    const options = {
-        method: 'POST',
-        body: payload,
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    }
-    fetch(url, options)
-        .then(res => res.json())
-        .then(res => console.log(res));
-  }else{
+    let products = [];
+    basket.map((item) => products.push(item._id));
+    console.log("orderid = ", purchase(url, contact, products));
+  } else {
     alert("veuillez rentrer une adresse mail valide");
   }
-})
+});
