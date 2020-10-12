@@ -1,4 +1,4 @@
-.shopping-basket{
+.shopping-basket {
   display: flex;
   justify-content: center;
   align-content: center;
@@ -7,7 +7,7 @@
   width: 100%;
 }
 
-.contact{
+.contact {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -15,7 +15,20 @@
   width: 90%;
   margin-left: $header-width;
   margin-top: 100px;
-  height: 400px;
+  min-height: 360px;
+  &-input {
+    display: block;
+    width: 250px;
+    height: 20px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
 }
 
 .basket {
@@ -79,18 +92,18 @@
             justify-content: space-between;
             align-items: center;
             height: 100%;
-            &__add{
+            &__add {
               height: 46px;
               width: 46px;
               border-radius: 50%;
             }
-            &__remove{
+            &__remove {
               height: 46px;
               width: 46px;
               border-radius: 50%;
             }
           }
-          &__delete{
+          &__delete {
             height: 46px;
             width: 46px;
             border-radius: 50%;

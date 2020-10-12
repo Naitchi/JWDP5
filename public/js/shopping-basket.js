@@ -86,7 +86,12 @@ const buildANumberAdjust = (item) => {
     )
   );
   element.appendChild(
-    buildATextContentWithId("span", 0, "qty-" + item._id, item.quantity)
+    buildATextContentWithId(
+      "span",
+      0,
+      "qty-" + item._id + item.color,
+      item.quantity
+    )
   );
   element.appendChild(buildAButtonDiv(item));
   return element;
@@ -110,12 +115,12 @@ const buildAAddButton = (item) => {
   );
   element.addEventListener("click", () => {
     console.log(item);
-    const qty = document.getElementById("qty-" + item._id);
+    const qty = document.getElementById("qty-" + item._id + item.color);
     if (qty.innerHTML < 10) {
       qty.innerHTML++;
       let array = takeLocalStorageData();
       array.map((teddy) => {
-        if (teddy._id === item._id) {
+        if (teddy._id === item._id && teddy.color === item.color) {
           teddy.quantity++;
           console.log(teddy.quantity);
         }
@@ -125,7 +130,6 @@ const buildAAddButton = (item) => {
     } else {
       alert("veuillez mettre un chiffre inférieur à 10");
     }
-    console.log(qty.innerHTML);
   });
   element.appendChild(
     buildAFontAwesomeI(
@@ -150,12 +154,12 @@ const buildARemoveButton = (item) => {
   );
   element.addEventListener("click", () => {
     console.log(item);
-    const qty = document.getElementById("qty-" + item._id);
+    const qty = document.getElementById("qty-" + item._id + item.color);
     if (qty.innerHTML > 1) {
       qty.innerHTML--;
       let array = takeLocalStorageData();
       array.map((teddy) => {
-        if (teddy._id === item._id) {
+        if (teddy._id === item._id && teddy.color === item.color) {
           teddy.quantity--;
           console.log(teddy.quantity);
         }
@@ -164,7 +168,6 @@ const buildARemoveButton = (item) => {
     } else {
       alert("veuillez mettre un chiffre acceptable");
     }
-    console.log(qty.innerHTML);
   });
   element.appendChild(
     buildAFontAwesomeI(
@@ -254,7 +257,10 @@ btnForm.addEventListener("click", () => {
     const basket = takeLocalStorageData();
     let products = [];
     basket.map((item) => products.push(item._id));
-    console.log("orderid = ", purchase(url, contact, products));
+    purchase(url, contact, products).then((order) => {
+      console.log(order);
+      document.location.href = `../html/confirmation.html?orderId= ${order.orderId}`;
+    });
   } else {
     alert("veuillez rentrer une adresse mail valide");
   }

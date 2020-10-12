@@ -33,40 +33,52 @@
         <h2 class="basket__title">Votre panier :</h2>
         <ul class="basket__content" id="basket__content"></ul>
       </div>
-
-      <form class="contact" name="contact">
-        <p>
-          <label for="nom">Votre nom</label> :
-          <input type="text" id="nom" name="nom" maxlength="20" required />
-        </p>
-        <p>
-          <label for="prenom">Votre Prenom</label> :
-          <input
-            type="text"
-            id="prenom"
-            name="prenom"
-            maxlength="20"
-            required
-          />
-        </p>
-        <p>
-          <label for="adress">Quel est votre adresse</label>
-          <input type="text" id="adress" name="adress" required />
-        </p>
-        <p>
-          <label for="city">Votre ville :</label>
-          <input type="text" id="city" name="city" required />
-        </p>
-        <p>
-          <label for="email">Quelle est votre adresse mail ? </label> :
-          <input type="email" id="email" name="email" required />
-        </p>
-        <p>
-          <input type="submit" id="submit" name="envoyer" value="Envoyer" />
-          <br />
-          <input type="reset" name="annuler" value="Annuler" />
-        </p>
-      </form>
+      <p class="contact">
+        <label for="prenom">Votre Prenom :</label>
+        <input
+          class="contact-input"
+          type="text"
+          id="prenom"
+          name="prenom"
+          maxlength="20"
+          required
+        />
+        <label for="nom">Votre nom :</label>
+        <input
+          class="contact-input"
+          type="text"
+          id="nom"
+          name="nom"
+          maxlength="20"
+          required
+        />
+        <label for="adress">Quel est votre adresse</label>
+        <input
+          class="contact-input"
+          type="text"
+          id="adress"
+          name="adress"
+          required
+        />
+        <label for="city">Votre ville :</label>
+        <input
+          class="contact-input"
+          type="text"
+          id="city"
+          name="city"
+          required
+        />
+        <label for="email">Votre adresse mail :</label>
+        <input
+          class="contact-input"
+          type="email"
+          id="email"
+          name="email"
+          required
+        />
+        <input type="submit" id="submit" name="envoyer" value="Envoyer" />
+        <input type="reset" name="annuler" value="Annuler" />
+      </p>
     </div>
     <script src="../js/shopping-basket.js"></script>
   </body>
