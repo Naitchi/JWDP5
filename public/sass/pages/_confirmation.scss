@@ -1,0 +1,78 @@
+.confirmation-body {
+  background-color: $darker-color-bg;
+}
+
+.confirmation {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 100px;
+  background-color: $color-bg;
+  height: 350px;
+  border: $main-color solid 2px;
+  border-radius: 50px;
+  &__h1 {
+    font-family: "Belligerent", Arial, sans-serif;
+    font-size: 4rem;
+    font-weight: bold;
+    color: $font-color;
+  }
+  &__h2 {
+    font-size: 2.5rem;
+    color: $font-color;
+  }
+  &__div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 360px;
+    height: 150px;
+    &__p {
+      font-size: 1.1rem;
+      text-align: center;
+    }
+  }
+}
+
+@include screen-xxl {
+  .confirmation {
+    margin-top: 100px;
+    height: 890px;
+    width: 600px;
+    border: $main-color solid 4px;
+    &__h1 {
+      font-size: 6rem;
+    }
+    &__h2 {
+      font-size: 3.5rem;
+    }
+    &__div {
+      width: 560px;
+      height: 550px;
+      &__p {
+        font-size: 2.1rem;
+      }
+    }
+  }
+}
+
+@include screen-lg {
+  .confirmation {
+    margin-top: 100px;
+    width: 90%;
+    &__h1 {
+      font-size: 2rem;
+    }
+    &__h2 {
+      font-size: 1.5rem;
+    }
+    &__div {
+      width: 100%;
+      &__p {
+        font-size: 1rem;
+      }
+    }
+  }
+}

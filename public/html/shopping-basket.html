@@ -29,56 +29,11 @@
       <h1 class="header__title">Orinoco</h1>
     </header>
     <div class="shopping-basket">
-      <div class="basket">
+      <div class="basket" id="basket">
         <h2 class="basket__title">Votre panier :</h2>
         <ul class="basket__content" id="basket__content"></ul>
       </div>
-      <p class="contact">
-        <label for="prenom">Votre Prenom :</label>
-        <input
-          class="contact-input"
-          type="text"
-          id="prenom"
-          name="prenom"
-          maxlength="20"
-          required
-        />
-        <label for="nom">Votre nom :</label>
-        <input
-          class="contact-input"
-          type="text"
-          id="nom"
-          name="nom"
-          maxlength="20"
-          required
-        />
-        <label for="adress">Quel est votre adresse</label>
-        <input
-          class="contact-input"
-          type="text"
-          id="adress"
-          name="adress"
-          required
-        />
-        <label for="city">Votre ville :</label>
-        <input
-          class="contact-input"
-          type="text"
-          id="city"
-          name="city"
-          required
-        />
-        <label for="email">Votre adresse mail :</label>
-        <input
-          class="contact-input"
-          type="email"
-          id="email"
-          name="email"
-          required
-        />
-        <input type="submit" id="submit" name="envoyer" value="Envoyer" />
-        <input type="reset" name="annuler" value="Annuler" />
-      </p>
+      <div id="contact"></div>
     </div>
     <script src="../js/shopping-basket.js"></script>
   </body>

@@ -15,7 +15,7 @@
   justify-content: space-between;
   width: 60%;
   height: 100%;
-  margin-left: $header-width + $search-width;
+  margin-left: $header-width;
 
   &__searchResults {
     margin: 50px 0 50px 0;
@@ -104,83 +104,6 @@
   }
 }
 
-.greySide {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  background-color: $search-color;
-  width: $search-width;
-  height: 100%;
-  box-shadow: 8px 0px 4px rgba(100, 100, 100, 0.5);
-
-  position: fixed;
-  left: 0;
-  z-index: 1;
-  margin-left: $header-width;
-
-  &__search {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    height: 250px;
-    width: 390px;
-    margin-top: 50px;
-    &__byName {
-      width: 100%;
-
-      &__label {
-        text-transform: uppercase;
-        font-size: 1.5rem;
-      }
-    }
-
-    &__byPrice {
-      width: 100%;
-
-      &__title {
-        text-transform: uppercase;
-        font-size: 1.5rem;
-      }
-
-      &__input {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-
-        &__minChamp {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          justify-content: center;
-        }
-
-        &__maxChamp {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          justify-content: center;
-        }
-      }
-    }
-  }
-
-  &__p {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 80%;
-    height: 40%;
-    color: $font-color;
-    font-size: 1.5rem;
-    line-height: 29px;
-    text-align: center;
-    letter-spacing: 1px;
-  }
-}
-
 @include screen-xxl {
   .mainSide__searchResults__result {
     width: 1950px;
@@ -224,24 +147,6 @@
       }
     }
   }
-
-  .greySide {
-    &__search {
-      &__byName__label {
-        font-size: 2rem;
-      }
-      &__byPrice__title {
-        font-size: 2rem;
-      }
-    }
-    &__p {
-      font-size: 2rem;
-    }
-  }
-  label,
-  p {
-    font-size: 2rem;
-  }
 }
 
 @include screen-xl {
@@ -259,19 +164,6 @@
           width: 382px;
         }
       }
-    }
-  }
-
-  .greySide {
-    width: 100%;
-    height: 200px;
-    margin-left: 0;
-    margin-top: 100px;
-    &__search {
-      flex-direction: row;
-      height: 250px;
-      width: 990px;
-      margin-top: 0;
     }
   }
 }
@@ -315,10 +207,6 @@
       }
     }
   }
-
-  .greySide__search {
-    width: 750px;
-  }
 }
 
 @include screen-md {
@@ -351,37 +239,5 @@
         }
       }
     }
-  }
-  .greySide {
-    width: 100%;
-    height: 210px;
-    margin-left: 0;
-    margin-top: 100px;
-    &__search {
-      flex-direction: column;
-      height: 130px;
-      width: 90%;
-      margin-top: 20px;
-      &__byName {
-        &__label {
-          font-size: 1rem;
-        }
-      }
-      &__byPrice {
-        &__title {
-          font-size: 1rem;
-        }
-      }
-    }
-    &__p {
-      font-size: 1rem;
-      margin-bottom: 10px;
-    }
-  }
-}
-
-@include screen-sm {
-  .greySide__search__byPrice__input {
-    flex-direction: column;
   }
 }

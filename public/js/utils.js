@@ -42,12 +42,23 @@ const buildAA = (classe, content, href) => {
   return newElement;
 };
 
-const addAInput = (type, name, value) => {
+const addAInput = (type, name, value, classe) => {
   const input = document.createElement("input");
+  input.classList.add(classe);
   input.type = type;
   input.name = name;
   input.value = value;
   input.id = value;
+  return input;
+};
+
+const addATextInputWithClass = (type, name, id, classe, required) => {
+  const input = document.createElement("input");
+  input.type = type;
+  input.name = name;
+  input.classList.add(classe);
+  input.id = id;
+  input.required = required;
   return input;
 };
 

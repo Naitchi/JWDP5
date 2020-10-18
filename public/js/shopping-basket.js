@@ -3,7 +3,6 @@ const getElementType = async (_id) => {
   const response = await fetch("/api/teddies/" + _id);
   if (response.ok) {
     const data = response.json();
-    console.log(data);
     return data;
   } else {
     console.log("Retour du serveur : ", response.status);
@@ -21,16 +20,17 @@ const creeContact = () => {
   return contact;
 };
 
-const buildABasket = (basket) => {
-  basket.map((item, index) => buildAElement(item, index));
+const buildABasket = async (basket) => {
+  basket.map((item, index) => {
+    buildAElement(item, index);
+  });
 };
 
 const buildAElement = async (item, index) => {
-  console.log(item);
-  const elementParent = document.getElementById("basket__content");
-  const itemType = await getElementType(item._id);
   const element = buildALi(index, "basket__content__element");
+  const elementParent = document.getElementById("basket__content");
   elementParent.appendChild(element);
+  const itemType = await getElementType(item._id);
   element.appendChild(
     buildAImg(
       "basket__content__element__img",
@@ -40,7 +40,6 @@ const buildAElement = async (item, index) => {
   );
   element.appendChild(buildACharacteristics(item, itemType));
   element.appendChild(buildAElementOptions(item));
-  return element;
 };
 
 const buildACharacteristics = (item, itemType) => {
@@ -127,6 +126,7 @@ const buildAAddButton = (item) => {
       });
       console.log(array);
       addToLocalStorage(array);
+      addATotalPrice();
     } else {
       alert("veuillez mettre un chiffre inférieur à 10");
     }
@@ -165,6 +165,7 @@ const buildARemoveButton = (item) => {
         }
       });
       addToLocalStorage(array);
+      addATotalPrice();
     } else {
       alert("veuillez mettre un chiffre acceptable");
     }
@@ -217,17 +218,21 @@ const buildADeleteButton = (item) => {
   return element;
 };
 
-const basket = takeLocalStorageData();
-if (basket == 0) {
-  const elementParent = document.getElementById("basket__content");
-  elementParent.appendChild(
-    buildATextContent(
-      "p",
-      "basket__content__empty",
-      "pas d'article dans le panier pour l'instant"
-    )
-  );
-}
+const ifEmpty = (basket) => {
+  if (basket == 0) {
+    const elementParent = document.getElementById("basket__content");
+    elementParent.appendChild(
+      buildATextContent(
+        "p",
+        "basket__content__empty",
+        "pas d'article dans le panier pour l'instant"
+      )
+    );
+  } else {
+    buildAContact();
+    buildATotalPrice();
+  }
+};
 
 const purchase = (url, contact, products) => {
   const data = {
@@ -244,10 +249,7 @@ const purchase = (url, contact, products) => {
   return fetch(url, options).then((response) => response.json());
 };
 
-console.log(basket);
-buildABasket(basket);
-const btnForm = document.getElementById("submit");
-btnForm.addEventListener("click", () => {
+const checkAndSend = async () => {
   const email = document.querySelector('input[name="email"]').value;
   const regexEmailValidator = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@[a-zA-Z\-0-9]+\.+[a-zA-Z]{2,}$/;
   if (regexEmailValidator.test(email)) {
@@ -257,11 +259,102 @@ btnForm.addEventListener("click", () => {
     const basket = takeLocalStorageData();
     let products = [];
     basket.map((item) => products.push(item._id));
+    const price = await calculTotalPrice();
     purchase(url, contact, products).then((order) => {
       console.log(order);
-      document.location.href = `../html/confirmation.html?orderId= ${order.orderId}`;
+      document.location.href = `../html/confirmation.html?orderId= ${order.orderId}&price=${price}`;
     });
   } else {
     alert("veuillez rentrer une adresse mail valide");
   }
-});
+};
+
+const calculTotalPrice = async () => {
+  const basket = takeLocalStorageData();
+  let totalPrice = 0;
+  await Promise.all(
+    basket.map(async (item) => {
+      console.log(item);
+      const itemType = await getElementType(item._id);
+      console.log(itemType);
+      totalPrice += item.quantity * itemType.price;
+    })
+  );
+  return totalPrice;
+};
+
+const buildContactInput = () => {
+  const element = buildATextContent("p", "contact", "");
+  element.appendChild(addALabel("contact-label", "Votre prénom :", "prenom"));
+  element.appendChild(
+    addATextInputWithClass("text", "prenom", "prenom", "contact-input", "true")
+  );
+  element.appendChild(addALabel("contact-label", "Votre nom :", "nom"));
+  element.appendChild(
+    addATextInputWithClass("text", "nom", "nom", "contact-input", "true")
+  );
+  element.appendChild(addALabel("contact-label", "Votre adresse :", "adress"));
+  element.appendChild(
+    addATextInputWithClass("text", "adress", "adress", "contact-input", "true")
+  );
+  element.appendChild(addALabel("contact-label", "Votre ville :", "city"));
+  element.appendChild(
+    addATextInputWithClass("text", "city", "city", "contact-input", "true")
+  );
+  element.appendChild(
+    addALabel("contact-label", "Votre adresse mail :", "email")
+  );
+  element.appendChild(
+    addATextInputWithClass("email", "email", "email", "contact-input", "true")
+  );
+  element.appendChild(
+    addAInput("submit", "envoyer", "Envoyer", "contact-input-btnSend")
+  );
+  return element;
+};
+
+const buildAContact = () => {
+  const elementParent = document.getElementById("contact");
+  elementParent.appendChild(buildContactInput());
+  const btnForm = document.getElementById("Envoyer");
+  btnForm.addEventListener("click", () => {
+    checkAndSend();
+  });
+};
+
+const addATotalPrice = async () => {
+  const basket = takeLocalStorageData();
+  let totalPrice = 0;
+  await Promise.all(
+    basket.map(async (item) => {
+      const itemType = await getElementType(item._id);
+      totalPrice += item.quantity * itemType.price;
+    })
+  );
+  const element = document.getElementById("basket__totalPrice__p");
+  element.innerHTML = `Prix total : ${(totalPrice / 100).toFixed(2)} €`;
+};
+
+const buildATotalPrice = () => {
+  const elementParent = document.getElementById("basket");
+  elementParent.append(buildAPriceDiv());
+};
+
+const buildAPriceDiv = () => {
+  const newElement = document.createElement("div");
+  newElement.classList.add("basket__totalPrice");
+  newElement.appendChild(
+    buildATextContentWithId(
+      "p",
+      "basket__totalPrice__p",
+      "basket__totalPrice__p",
+      ""
+    )
+  );
+  return newElement;
+};
+
+const basket = takeLocalStorageData();
+buildABasket(basket);
+ifEmpty(basket);
+addATotalPrice();

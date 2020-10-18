@@ -13,11 +13,20 @@
     <script src="../js/localstorage.js"></script>
     <title>Votre commande est validé !</title>
   </head>
-  <body>
-    <div>
-        <h1>Merci !</h1>
-        
+  <body class="confirmation-body">
+    <div class="confirmation">
+      <h1 class="confirmation__h1">Orinoco</h1>
+      <h2 class="confirmation__h2">Merci !</h2>
+      <div class="confirmation__div">
+        <p class="confirmation__div__p">
+          Pour avoir passé commande chez nous !
+        </p>
+        <p class="confirmation__div__p">Votre numéro de commande est le :</p>
+        <p class="confirmation__div__p" id="orderId"></p>
+        <p class="confirmation__div__p" id="price"></p>
+        <p class="confirmation__div__p">Et nous vous remercions encore !</p>
+      </div>
     </div>
+    <script src="../js/confirmation.js"></script>
   </body>
-  <script src="../js/confirmation.js"></script>
 </html>
