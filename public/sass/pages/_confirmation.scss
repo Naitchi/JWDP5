@@ -1,5 +1,9 @@
 .confirmation-body {
   background-color: $darker-color-bg;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .confirmation {

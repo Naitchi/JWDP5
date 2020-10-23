@@ -21,3 +21,5 @@ const creeItem = (_id, quantity, color) => {
     color,
   };
 };
+
+const resetLocalStorage = () => localStorage.clear();

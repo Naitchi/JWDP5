@@ -16,3 +16,4 @@ getOrderId().then((parametres) => {
     parametres[1] / 100
   ).toFixed(2)}€`;
 });
+resetLocalStorage();
