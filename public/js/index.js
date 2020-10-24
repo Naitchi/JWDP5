@@ -1,17 +1,11 @@
-const getTeddies = async () => {
+const getTeddies = () => {
   //FONCTION POUR RECUPERER LES API
-  try {
-    const response = await fetch("/api/teddies");
-    if (response.ok) {
-      const data = response.json();
+  return fetch("/api/teddies")
+    .then((response) => response.json())
+    .then((data) => {
       console.log(data);
       return data;
-    } else {
-      console.log("Retour du serveur : ", response.status);
-    }
-  } catch (error) {
-    console.log(error);
-  }
+    });
 };
 
 //fonction pour les div parents
@@ -124,6 +118,7 @@ const insertAllTeddies = (elementSearchResult, teddies) => {
 
 //Mise en place de toutes les fonctions
 getTeddies().then((teddies) => {
+  console.log(teddies);
   const searchResultsElement = document.getElementById("searchResults");
   insertAllTeddies(searchResultsElement, teddies);
 });

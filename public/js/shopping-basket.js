@@ -1,12 +1,11 @@
-const getElementType = async (_id) => {
+const getElementType = (_id) => {
   //FONCTION POUR RECUPERER LES API
-  const response = await fetch("/api/teddies/" + _id);
-  if (response.ok) {
-    const data = response.json();
-    return data;
-  } else {
-    console.log("Retour du serveur : ", response.status);
-  }
+  return fetch("/api/teddies/" + _id)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      return data;
+    });
 };
 
 const creeContact = () => {
@@ -196,7 +195,7 @@ const buildADeleteButton = (item) => {
     let array = takeLocalStorageData();
     array.map((teddy, index) => {
       console.log(index);
-      if (teddy._id === item._id) {
+      if (teddy._id === item._id && teddy.color === item.color) {
         array.splice(index, 1);
         console.log(array);
         addToLocalStorage(array);

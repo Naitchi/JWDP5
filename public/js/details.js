@@ -1,17 +1,22 @@
-const getTeddy = async () => {
+const getTeddy = () => {
   //FONCTION POUR RECUPERER LES API
   const parsedUrl = new URL(window.location.href);
-  const response = await fetch(
+  return fetch(
     "/api/teddies/" + parsedUrl.searchParams.get("_id")
-  );
-  if (response.ok) {
-    const data = response.json();
+  )
+    .then((response) =>{
+      if (response.ok){
+        return response.json();
+      }
+      else{
+        console.log("Retour du serveur : ", response.status);
+        document.location.href = "../html/404.html";    
+      }
+    }) 
+    .then((data) => {
     console.log(data);
     return data;
-  } else {
-    console.log("Retour du serveur : ", response.status);
-    document.location.href = "../html/404.html";
-  }
+  });
 };
 
 const addAInputRadio = (nodeElement, name, value, index) => {
